@@ -1,16 +1,4 @@
 # knackstack1
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+As a part of our YIP idea, we are in the process of creating an app to be launched as a product later down the line with us launching and reaching out as a publicly traded company.
+Now this code has 2 - 3 dependencies in the pubspec.yaml file, which means it needs to be downloaded, and the background images needs to be downloaded and integrated into the pubspec.yaml file and the main code itself needs to be updated with the path of the background images. Now, the pubspec.yaml file also includes a dependency that is mandatory for the popup button to work, which is included in the pubspec file itself, without which the code will throw errors, saying that the package does not exist.
