@@ -82,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
@@ -127,14 +128,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text('Filters',
+                        PopupMenuButton<String>(
+                          child: Text(
+                            'Filters',
                             textAlign: TextAlign.start,
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
-                            )),
-                        PopupMenuButton<String>(
+                            ),
+                          ),
                           onSelected: _sortAchievements,
                           itemBuilder: (BuildContext context) {
                             return [
@@ -180,10 +183,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         achievements[index].title,
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 30, // White text color
+                          fontSize: screenWidth * 0.07, // Variable text size
                         ),
                       ),
-                      SizedBox(height: 4),
+                      SizedBox(height: 12),
                       Row(
                         mainAxisAlignment: MainAxisAlignment
                             .spaceBetween, // Align to the right
@@ -192,24 +195,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             achievements[index].date,
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 12, // Smaller font size for date
+                              fontSize:
+                                  screenWidth * 0.04, // Variable text size
                             ),
                           ),
-                          RatingBar.builder(
-                            initialRating: achievements[index].rating,
-                            minRating: 1,
-                            direction: Axis.horizontal,
-                            allowHalfRating: true,
-                            itemCount: 5,
-                            itemSize: 20,
-                            itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
+                          RatingBarIndicator(
+                            rating: achievements[index].rating,
                             itemBuilder: (context, _) => Icon(
                               Icons.star,
                               color: Colors.amber,
                             ),
-                            onRatingUpdate: (rating) {
-                              // This is just for displaying the rating.
-                            },
+                            itemCount: 5,
+                            itemSize:
+                                screenWidth * 0.04, // Variable rating bar size
+                            unratedColor: Colors.white,
                           ),
                         ],
                       ),
@@ -232,13 +231,14 @@ class AchievementDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text('Project Details'),
       ),
       body: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(0),
           image: DecorationImage(
             image: AssetImage(
               'C:/Users/kuttu/Downloads/Knack Stack/BG.png',
@@ -253,9 +253,9 @@ class AchievementDetailsScreen extends StatelessWidget {
             children: [
               Text(
                 achievement.title,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
               Text(
                 achievement.description,
                 style: TextStyle(fontSize: 16),
@@ -268,21 +268,15 @@ class AchievementDetailsScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 14, color: Colors.white),
                   ),
                   SizedBox(width: 16),
-                  RatingBar.builder(
-                    initialRating: achievement.rating,
-                    minRating: 1,
-                    direction: Axis.horizontal,
-                    allowHalfRating: true,
-                    itemCount: 5,
-                    itemSize: 20,
-                    itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
+                  RatingBarIndicator(
+                    rating: achievement.rating,
                     itemBuilder: (context, _) => Icon(
                       Icons.star,
                       color: Colors.amber,
                     ),
-                    onRatingUpdate: (rating) {
-                      // This is just for displaying the rating.
-                    },
+                    itemCount: 5,
+                    itemSize: screenWidth * 0.04, // Variable rating bar size
+                    unratedColor: Colors.grey,
                   ),
                 ],
               ),
